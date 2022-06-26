@@ -36,6 +36,7 @@
                   class="image_1"
                   :preview-src-list="srcList"
                   style="border-radius: 3px 3px 0 0"
+                  fit="contain"
               >
                 <div slot="error">
                   <div slot="placeholder" class="error">
@@ -70,6 +71,7 @@
                 element-loading-spinner="el-icon-loading"
             >
               <el-image
+                  fit="contain"
                   :src="url_2"
                   class="image_1"
                   :preview-src-list="srcList1"
@@ -345,18 +347,14 @@ export default {
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
-  margin-right: 0px;
+  margin: 0 0 0 auto;
   max-width: 1800px;
 }
 
 #CT_image_1 {
   width: 90%;
   height: 40%;
-  margin: 0px auto;
-  padding: 0px auto;
-  margin-right: 180px;
-  margin-bottom: 0px;
+  margin: 0 180px 0 auto;
   border-radius: 4px;
 }
 
@@ -368,7 +366,7 @@ export default {
 
 .image_1 {
   width: 275px;
-  height: 260px;
+  height: auto;
   background: #ffffff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
@@ -400,6 +398,7 @@ export default {
   margin: 100px auto;
   width: 50%;
   padding: 10px;
+  line-height: 37px;
   text-align: center;
 }
 
@@ -489,7 +488,6 @@ div {
   background-color: #ffffff;
   height: 2px !important;
   width: 100%;
-  margin-bottom: 20px;
   margin: 20px auto;
 }
 
@@ -501,7 +499,6 @@ div {
   margin: 15px auto;
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
 }
 
 .step_1 {

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ceb35ab-de56-4058-89d8-288ee768cc12" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/front-end/src/components/App2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/Content.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/App1.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/App1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/App1.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +18,37 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-ycp" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1656240691" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="dev-ycp" />
+                    <option name="lastUsedInstant" value="1656240690" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656235828544</updated>
       <workItem from="1656235830042" duration="2002000" />
-      <workItem from="1656237864767" duration="1881000" />
+      <workItem from="1656237864767" duration="3386000" />
     </task>
     <servers />
   </component>
@@ -77,7 +104,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
