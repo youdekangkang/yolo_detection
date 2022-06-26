@@ -1,13 +1,13 @@
 <template>
   <div id="Content">
     <el-dialog
-      title="AI预测中"
-      :visible.sync="dialogTableVisible"
-      :show-close="false"
-      :close-on-press-escape="false"
-      :append-to-body="true"
-      :close-on-click-modal="false"
-      :center="true"
+        title="AI预测中"
+        :visible.sync="dialogTableVisible"
+        :show-close="false"
+        :close-on-press-escape="false"
+        :append-to-body="true"
+        :close-on-click-modal="false"
+        :center="true"
     >
       <el-progress :percentage="percentage"></el-progress>
       <span slot="footer" class="dialog-footer">请耐心等待约3秒钟</span>
@@ -16,9 +16,9 @@
     <div id="CT">
       <div id="CT_image">
         <el-card
-          id="CT_image_1"
-          class="box-card"
-          style="
+            id="CT_image_1"
+            class="box-card"
+            style="
             border-radius: 8px;
             width: 800px;
             height: 360px;
@@ -27,32 +27,32 @@
         >
           <div class="demo-image__preview1">
             <div
-              v-loading="loading"
-              element-loading-text="上传图片中"
-              element-loading-spinner="el-icon-loading"
+                v-loading="loading"
+                element-loading-text="上传图片中"
+                element-loading-spinner="el-icon-loading"
             >
               <el-image
-                :src="url_1"
-                class="image_1"
-                :preview-src-list="srcList"
-                style="border-radius: 3px 3px 0 0"
+                  :src="url_1"
+                  class="image_1"
+                  :preview-src-list="srcList"
+                  style="border-radius: 3px 3px 0 0"
               >
                 <div slot="error">
                   <div slot="placeholder" class="error">
                     <el-button
-                      v-show="showbutton"
-                      type="primary"
-                      icon="el-icon-upload"
-                      class="download_bt"
-                      v-on:click="true_upload"
+                        v-show="showbutton"
+                        type="primary"
+                        icon="el-icon-upload"
+                        class="download_bt"
+                        v-on:click="true_upload"
                     >
                       上传图像
                       <input
-                        ref="upload"
-                        style="display: none"
-                        name="file"
-                        type="file"
-                        @change="update"
+                          ref="upload"
+                          style="display: none"
+                          name="file"
+                          type="file"
+                          @change="update"
                       />
                     </el-button>
                   </div>
@@ -65,15 +65,15 @@
           </div>
           <div class="demo-image__preview2">
             <div
-              v-loading="loading"
-              element-loading-text="处理中,请耐心等待"
-              element-loading-spinner="el-icon-loading"
+                v-loading="loading"
+                element-loading-text="处理中,请耐心等待"
+                element-loading-spinner="el-icon-loading"
             >
               <el-image
-                :src="url_2"
-                class="image_1"
-                :preview-src-list="srcList1"
-                style="border-radius: 3px 3px 0 0"
+                  :src="url_2"
+                  class="image_1"
+                  :preview-src-list="srcList1"
+                  style="border-radius: 3px 3px 0 0"
               >
                 <div slot="error">
                   <div slot="placeholder" class="error">{{ wait_return }}</div>
@@ -92,20 +92,20 @@
           <div slot="header" class="clearfix">
             <span>检测目标</span>
             <el-button
-              style="margin-left: 35px"
-              v-show="!showbutton"
-              type="primary"
-              icon="el-icon-upload"
-              class="download_bt"
-              v-on:click="true_upload2"
+                style="margin-left: 35px"
+                v-show="!showbutton"
+                type="primary"
+                icon="el-icon-upload"
+                class="download_bt"
+                v-on:click="true_upload2"
             >
               重新选择图像
               <input
-                ref="upload2"
-                style="display: none"
-                name="file"
-                type="file"
-                @change="update"
+                  ref="upload2"
+                  style="display: none"
+                  name="file"
+                  type="file"
+                  @change="update"
               />
             </el-button>
           </div>
@@ -113,14 +113,14 @@
             <el-tab-pane label="检测到的目标" name="first">
               <!-- 表格存放特征值 -->
               <el-table
-                :data="feature_list"
-                height="390"
-                border
-                style="width: 750px; text-align: center"
-                v-loading="loading"
-                element-loading-text="数据正在处理中，请耐心等待"
-                element-loading-spinner="el-icon-loading"
-                lazy
+                  :data="feature_list"
+                  height="390"
+                  border
+                  style="width: 750px; text-align: center"
+                  v-loading="loading"
+                  element-loading-text="数据正在处理中，请耐心等待"
+                  element-loading-spinner="el-icon-loading"
+                  lazy
               >
                 <el-table-column label="目标类别" width="250px">
                   <template slot-scope="scope">
@@ -229,33 +229,33 @@ export default {
         this.myFunc();
       }, 30);
       let config = {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {"Content-Type": "multipart/form-data"},
       }; //添加请求头
       axios
-        .post(this.server_url + "/upload", param, config)
-        .then((response) => {
-          this.percentage = 100;
-          clearInterval(timer);
-          this.url_1 = response.data.image_url;
-          this.srcList.push(this.url_1);
-          this.url_2 = response.data.draw_url;
-          this.srcList1.push(this.url_2);
-          this.fullscreenLoading = false;
-          this.loading = false;
+          .post(this.server_url + "/upload", param, config)
+          .then((response) => {
+            this.percentage = 100;
+            clearInterval(timer);
+            this.url_1 = response.data.image_url;
+            this.srcList.push(this.url_1);
+            this.url_2 = response.data.draw_url;
+            this.srcList1.push(this.url_2);
+            this.fullscreenLoading = false;
+            this.loading = false;
 
-          this.feat_list = Object.keys(response.data.image_info);
+            this.feat_list = Object.keys(response.data.image_info);
 
-          for (var i = 0; i < this.feat_list.length; i++) {
-            response.data.image_info[this.feat_list[i]][2] = this.feat_list[i];
-            this.feature_list.push(response.data.image_info[this.feat_list[i]]);
-          }
+            for (var i = 0; i < this.feat_list.length; i++) {
+              response.data.image_info[this.feat_list[i]][2] = this.feat_list[i];
+              this.feature_list.push(response.data.image_info[this.feat_list[i]]);
+            }
 
-          this.feature_list.push(response.data.image_info);
-          this.feature_list_1 = this.feature_list[0];
-          this.dialogTableVisible = false;
-          this.percentage = 0;
-          this.notice1();
-        });
+            this.feature_list.push(response.data.image_info);
+            this.feature_list_1 = this.feature_list[0];
+            this.dialogTableVisible = false;
+            this.percentage = 0;
+            this.notice1();
+          });
     },
     myFunc() {
       if (this.percentage + 33 < 99) {
@@ -264,7 +264,8 @@ export default {
         this.percentage = 99;
       }
     },
-    drawChart() {},
+    drawChart() {
+    },
     notice1() {
       this.$notify({
         title: "预测成功",
@@ -494,7 +495,7 @@ div {
 
 .steps {
   font-family: "lucida grande", "lucida sans unicode", lucida, helvetica,
-    "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   color: #21b3b9;
   text-align: center;
   margin: 15px auto;
