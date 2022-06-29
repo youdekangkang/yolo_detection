@@ -3,7 +3,13 @@
     <title>1</title>
   </head>
   <body>
-    <h1>1</h1>
-    <img src="{{ url_for('video_feed') }}">
+<!-- 第一个功能是上传视频 ,回传是一个json，第二个是视频流的输出，这个是实时的，现在我想比他做成上传视频并且输出检测的样子-->
+    <form action="/uploadvedio" method=post enctype=multipart/form-data>
+      <p>
+          <input type=file name=file>
+          <input type=submit value=Upload>
+      </p>
+    </form>
+    <img width="400px" height="auto" src="{{ url_for('video_feed') }}">
   </body>
 </html>

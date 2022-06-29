@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Author   : b站@在下啊水
-# detection: 基于yolov5+flask 网页端实现
 import os
 import cv2
 from base_camera import BaseCamera
@@ -14,9 +12,9 @@ import argparse
 from utils.datasets import *
 from utils.utils import *
 
-
 class Camera(BaseCamera):
     video_source = 'data/helmat1.mp4'
+    # video_source = 'uploads/beans.mp4'
 
     def __init__(self):
         if os.environ.get('OPENCV_CAMERA_SOURCE'):
@@ -29,9 +27,10 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
-        out, weights, imgsz = \
-            'inference/output', 'weights/yolov5s.pt', 640
+        out, weights, imgsz = 'inference/output', 'weights/final_helmat.pt', 640
         source = 'data/helmat1.mp4'
+        # source = 'uploads/beans.mp4'
+
         device = torch_utils.select_device()
         if os.path.exists(out):
             shutil.rmtree(out)  # delete output folder

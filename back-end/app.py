@@ -6,6 +6,7 @@ from datetime import timedelta
 from flask import *
 from processor.AIDetector_pytorch import Detector
 from importlib import import_module
+from flask_cors import *
 
 import core.main
 
@@ -23,11 +24,16 @@ werkzeug_logger.setLevel(rel_log.ERROR)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 
 # 安装页面的摄像头驱动
-if os.environ.get('CAMERA'):
-    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
-else:
-    from yolov5_flask import Camera
-from flask_cors import *
+# 这玩意我好像写不来 还是直接识别视频流算了
+
+from yolov5_flask import Camera
+
+def run_vedio():
+    if os.environ.get('CAMERA'):
+        Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+    else:
+        from yolov5_flask import Camera
+
 app = Flask(__name__)
 DETECTION_FOLDER = r'./static/detections'
 
@@ -69,6 +75,23 @@ def upload_file():
                         'image_info': image_info})
     return jsonify({'status': 0})
 
+@app.route('/uploadvedio' ,methods=['GET','POST'])
+def upload_vedio():
+    file = request.files['file']
+    print(datetime.datetime.now(), file.filename)
+    if file and allowed_file(file.filename):
+        print(app.config['UPLOAD_FOLDER'])
+        src_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(src_path)
+        print(src_path)
+        shutil.copy(src_path, './tmp/ct')
+        vedio_path = os.path.join('./tmp/ct', file.filename)
+        # return jsonify({'status': 1,
+        #                 'image_info': vedio_path})
+        return redirect(url_for('index'))
+    return jsonify({'status': 0})
+
+
 
 @app.route("/download", methods=['GET'])
 def download_file():
@@ -106,6 +129,7 @@ def video_feed():
 
 
 if __name__ == '__main__':
+    # run_vedio()
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     files = [
         'uploads', 'tmp/ct', 'tmp/draw',
