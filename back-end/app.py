@@ -5,12 +5,13 @@ import shutil
 from datetime import timedelta
 from flask import *
 from processor.AIDetector_pytorch import Detector
+from importlib import import_module
 
 import core.main
 
 UPLOAD_FOLDER = r'./uploads'
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg','mp4'])
 app = Flask(__name__)
 app.secret_key = 'secret!'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -20,6 +21,15 @@ werkzeug_logger.setLevel(rel_log.ERROR)
 
 # 解决缓存刷新问题
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
+
+# 安装页面的摄像头驱动
+if os.environ.get('CAMERA'):
+    Camera = import_module('camera_' + os.environ['CAMERA']).Camera
+else:
+    from yolov5_flask import Camera
+from flask_cors import *
+app = Flask(__name__)
+DETECTION_FOLDER = r'./static/detections'
 
 
 # 添加header解决跨域
@@ -46,6 +56,7 @@ def upload_file():
     file = request.files['file']
     print(datetime.datetime.now(), file.filename)
     if file and allowed_file(file.filename):
+        print(app.config['UPLOAD_FOLDER'])
         src_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(src_path)
         shutil.copy(src_path, './tmp/ct')
@@ -56,7 +67,6 @@ def upload_file():
                         'image_url': 'http://127.0.0.1:5003/tmp/ct/' + pid,
                         'draw_url': 'http://127.0.0.1:5003/tmp/draw/' + pid,
                         'image_info': image_info})
-
     return jsonify({'status': 0})
 
 
@@ -76,8 +86,27 @@ def show_photo(file):
             response.headers['Content-Type'] = 'image/png'
             return response
 
+@app.route('/camera')
+def index():
+    """Video streaming home page."""
+    return render_template('camera_test.html')
+
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen(Camera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 if __name__ == '__main__':
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     files = [
         'uploads', 'tmp/ct', 'tmp/draw',
         'tmp/image', 'tmp/mask', 'tmp/uploads'
