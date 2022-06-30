@@ -1,5 +1,5 @@
 <template>
-  <div id="Content">
+  <div>
     <el-dialog
         title="AI预测中"
         :visible.sync="dialogTableVisible"
@@ -90,7 +90,7 @@
       </div>
       <div id="info_patient">
         <!-- 卡片放置表格 -->
-        <el-card style="border-radius: 8px">
+        <el-card style="border-radius: 8px; margin-top: 50px">
           <div slot="header" class="clearfix">
             <span>检测目标</span>
             <el-button
@@ -118,7 +118,7 @@
                   :data="feature_list"
                   height="390"
                   border
-                  style="width: 750px; text-align: center"
+                  style="width: 760px; text-align: center"
                   v-loading="loading"
                   element-loading-text="数据正在处理中，请耐心等待"
                   element-loading-spinner="el-icon-loading"
@@ -184,7 +184,7 @@ export default {
     };
   },
   created: function () {
-    document.title = "YOLOv5目标检测WEB端";
+    document.title = "yolov5 - 检测平台 - 图片检测";
   },
   methods: {
     true_upload() {
@@ -290,14 +290,12 @@ export default {
 
 #hello p {
   font-size: 15px !important;
-  /*line-height: 25px;*/
 }
 
 .n1 .el-step__description {
   padding-right: 20%;
   font-size: 14px;
   line-height: 20px;
-  /* font-weight: 400; */
 }
 </style>
 
@@ -343,12 +341,11 @@ export default {
 
 #CT {
   display: flex;
-  height: 100%;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 0 0 auto;
-  max-width: 1800px;
+  margin: 50px 0 0 0;
 }
 
 #CT_image_1 {
@@ -375,7 +372,7 @@ export default {
   height: 30px;
   width: 275px;
   text-align: center;
-  background-color: #21b3b9;
+  background-color: rgb(82, 69, 229);
   line-height: 30px;
 }
 
@@ -391,7 +388,6 @@ export default {
   height: 290px;
 
   margin: 20px 460px;
-  /* background-color: green; */
 }
 
 .error {
@@ -443,7 +439,6 @@ div {
   line-height: 45px;
   border-radius: 3px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  color: #fff;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 0.875rem;
 }
@@ -458,7 +453,7 @@ div {
   -moz-opacity: 0;
   -ms-opacity: 0;
   -webkit-opacity: 0;
-  opacity: 0; /*css属性&mdash;&mdash;opcity不透明度，取值0-1*/
+  opacity: 0;
   filter: alpha(opacity=0);
   cursor: pointer;
 }
@@ -494,7 +489,7 @@ div {
 .steps {
   font-family: "lucida grande", "lucida sans unicode", lucida, helvetica,
   "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  color: #21b3b9;
+  color: rgb(82, 69, 229);
   text-align: center;
   margin: 15px auto;
   font-size: 20px;

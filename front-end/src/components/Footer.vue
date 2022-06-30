@@ -25,7 +25,7 @@ export default {
 }
 
 p {
-  color: #21b3b9;
+  color: rgb(82, 69, 229);
   text-align: center;
   margin: 30px auto;
   font-size: 1.1em;

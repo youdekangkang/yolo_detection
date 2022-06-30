@@ -1,22 +1,26 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>
+      <el-header style="background-color: #03033f; color: #b8bbcc; height: 100px">
         <app-header></app-header>
       </el-header>
       <el-container>
-        <el-aside width="200px">
+        <el-aside width="300px" style="background-color: white; height: 100vh">
           <el-menu
               :default-active="defaultRouter"
               class="el-menu-vertical-demo"
-              @select="handleSelect">
+              @select="handleSelect"
+              style="margin-top: 50px"
+              text-color="black"
+              active-text-color="#5245e5"
+          >
             <el-menu-item index="f-1">
               <i class="el-icon-menu"></i>
-              <span slot="title">App 1</span>
+              <span slot="title">图像检测 - 功能演示</span>
             </el-menu-item>
             <el-menu-item index="f-2">
               <i class="el-icon-menu"></i>
-              <span slot="title">App 2</span>
+              <span slot="title">视频检测 - 结果展示</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
@@ -62,7 +66,6 @@ export default {
   methods: {
     handleSelect(key) {
       this.currentApp = routerMap[key]
-      console.log(this.currentApp);
     }
   },
 };
