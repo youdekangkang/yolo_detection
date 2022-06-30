@@ -21,7 +21,6 @@
             style="
             border-radius: 8px;
             width: 800px;
-            height: 360px;
             margin-bottom: -30px;
           "
         >
@@ -184,7 +183,7 @@ export default {
     };
   },
   created: function () {
-    document.title = "yolov5 - 检测平台 - 图片检测";
+    document.title = "yolov5 - 检测平台 - 图像检测";
   },
   methods: {
     true_upload() {
@@ -350,7 +349,7 @@ export default {
 
 #CT_image_1 {
   width: 90%;
-  height: 40%;
+  height: fit-content;
   margin: 0 180px 0 auto;
   border-radius: 4px;
 }
@@ -378,14 +377,12 @@ export default {
 
 .demo-image__preview1 {
   width: 250px;
-  height: 290px;
   margin: 20px 60px;
   float: left;
 }
 
 .demo-image__preview2 {
   width: 250px;
-  height: 290px;
 
   margin: 20px 460px;
 }
